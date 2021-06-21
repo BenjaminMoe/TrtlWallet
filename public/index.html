@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+
+	<head>
+		
+		<title>TrtlWallet</title>
+
+		<meta charset='utf-8'/>
+
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+		<link rel="shortcut icon" href="/img/fav.ico">
+		<link rel='stylesheet' type='text/css' href='css/layout.css'/>
+
+		<script type='text/javascript' src='lib/qrcode.js'></script>
+
+	</head>
+
+	<body>
+		
+		<main>
+
+			<div class='mat-bg'></div>
+
+		</main>
+
+		<main class='raised'>
+		
+			<header>
+				<table>
+					<tr>
+						<td class='img'>
+							<img src='img/turtlecoin_logo.svg'/>
+						</td>
+						<td>
+							<h1>Turtlecoin Wallet Debugger</h1>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</header>
+
+			<section>
+
+				<nav>
+
+					<div class='toolbar'>
+						<table>
+							<tr>
+								<td>
+									<h2>Users</h2>
+								</td>
+								<td class='btn'>
+									<div id='UserWidget.add_user' class='add-btn'></div>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='content' id='UserWidget.list_users'></div>
+
+				</nav>
+
+				<article>
+				
+					<div class='transfers'>
+
+						<div class='from'>
+
+							<div class='profile' id='TransferWidget.panel.sender'>
+
+								<div class='header'>
+
+									<h3>
+										Selected User 
+										<div class='dots'></div>
+									</h3>
+
+									<div class='user'>
+
+										<table>
+											<tr>
+												<td class='a'>
+													<div id='UserWidget.history.avatar' class='circle'></div>
+												</td>
+												<td class='b'>
+													<div id='UserWidget.history.name' class='username'>
+														Username
+													</div>
+													<div class='balance'>
+														<span id='UserWidget.history.balance'></span>
+														<span>TRTL</span>
+													</div>
+												</td>
+												<td class='c'>
+
+													<img style='display: none;' id='UserWidget.history.refresh' src='img/refresh.png'/>
+
+												</td>
+											</tr>
+
+										</table>
+
+
+									</div>
+
+								</div>
+
+								<div id='UserWidget.history.list' class='content'>
+									
+									<!--
+									<li>
+										<table>
+											<tr>
+												<td class='icon' rowspan='2'>
+													<div class='icon'></div>
+												</td>
+												<td>Deposit</td>
+											</tr>
+											<tr>
+												<td>Amount trtl</td>
+											</tr>
+										</table>
+									</li>
+
+									<li>
+										<table>
+											<tr>
+												<td class='icon' rowspan='2'>
+													<div class='icon'></div>
+												</td>
+												<td>Sent To Username</td>
+											</tr>
+											<tr>
+												<td>Amount trtl</td>
+											</tr>
+										</table>
+									</li>
+
+									<li>
+										<table>
+											<tr>
+												<td class='icon' rowspan='2'>
+													<div class='icon'></div>
+												</td>
+												<td>Received From Username</td>
+											</tr>
+											<tr>
+												<td>Amount trtl</td>
+											</tr>
+										</table>
+									</li>
+
+									<li>
+										<table>
+											<tr>
+												<td class='icon' rowspan='2'>
+													<div class='icon'></div>
+												</td>
+												<td>Widthdraw</td>
+											</tr>
+											<tr>
+												<td>Amount trtl</td>
+											</tr>
+										</table>
+									</li>
+
+									-->
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class='to' style='display: none;'>
+
+							<div class='profile' id='TransferWidget.panel.receiver'>
+
+								<div class='header'>
+
+									<h3>
+										Receiver
+									</h3>
+
+									<select id='ReceiverWidget.select'>
+										<option>Select a Receiver</option>
+									</select>
+
+									<div class='user'>
+
+										<table>
+											<tr>
+												<td class='a'>
+													<div class='circle'></div>
+												</td>
+												<td class='b'>
+													<div class='username'>
+														ChaoticKangaroo
+													</div>
+												</td>
+												<td class='c'>
+													<div class='balance'>
+														<span>500.00</span>
+														<span>TRTL</span>
+													</div>
+												</td>
+											</tr>
+
+										</table>
+
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class='transfer-details'>
+
+						<div class='amount' id='TransferWidget.mode'>
+							<div class='header'>
+								<li id='TransferWidget.tabs.send'>Send</li>
+								<li id='TransferWidget.tabs.deposit'>Deposit</li>
+							</div>
+							
+							<div class='input'>
+
+								<div class='s'>
+
+									<h4>Step 01 - Amount</h4>
+
+									<div class='tbl'>
+										<table>
+											<tr>
+												<td>Send To</td>
+												<td>
+													<select id='SenderWidget.step_01.send_to'></select>
+												</td>
+											</tr>
+											<tr>
+												<td>Address</td>
+												<td>
+													<input id='SenderWidget.step_01.address' type='text'/>
+												</td>
+											</tr>
+											<tr>
+												<td>Amount</td>
+												<td>
+													<input class='amt' id='SenderWidget.step_01.amount' type='text'/> 
+													TRTL
+												</td>
+											</tr>
+										</table>
+									</div>
+
+									<button id='SenderWidget.step_01.prepare' class='step'>Prepare</button>
+
+									<h4>Step 02 - Fees</h4>
+
+									<div class='tbl'>
+										<table>
+											<tr>
+												<td>You Send</td>
+												<td>
+													<input id='SenderWidget.step_02.you_send' type='text' readonly='readonly'/>
+												</td>
+											</tr>
+											<tr>
+												<td>Network Fee</td>
+												<td>
+													<input id='SenderWidget.step_02.network_fee' type='text' readonly='readonly'/>
+												</td>
+											</tr>
+											<tr>
+												<td>Developer Fee</td>
+												<td>
+													<input id='SenderWidget.step_02.developer_fee' type='text' readonly='readonly'/>
+												</td>
+											</tr>
+											<tr>
+												<td>Node Fee</td>
+												<td>
+													<input id='SenderWidget.step_02.node_fee' type='text' readonly='readonly'/>
+												</td>
+											</tr>
+											<tr>
+												<td>Total</td>
+												<td>
+													<input type='text' id='SenderWidget.step_02.total' readonly='readonly'/>
+												</td>
+											</tr>
+										</table>
+									</div>
+
+									<button id='SenderWidget.step_02.submit' class='step'>Send TRTL</button>
+									<button id='SenderWidget.step_02.cancel' class='step'>Cancel</button>
+
+								</div>
+								
+								<div class='d'>
+
+									<h4>Step 01</h4>
+
+									<table>
+										<tr>
+											<td class='label'>
+												Amount: 
+											</td>
+											<td>
+												<div class='rel'>
+													<input type='text' id='DepositWidget.step_01.amount'/>
+												</div>
+											</td>
+											<td class='btn'>
+												<button id='DepositWidget.step_01.prepare'>Continue</button>
+											</td>
+											<td class='poll' id='DepositWidget.step_01.poll'>
+												
+											</td>
+										</tr>
+									</table>
+
+									<h4>Step 02</h4>
+
+									<div class='qr_code' id='DepositWidget.step_02.qr_code'></div>
+
+									<button id='DepositWidget.step_02.cancel' class='submit'>Cancel Deposit</button>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</article>
+
+			</section>
+
+		</main>
+
+		<script type='text/javascript' src='js/UserWidget.js'></script>
+		<script type='text/javascript' src='js/TransferWidget.js'></script>
+		<script type='text/javascript' src='js/SenderWidget.js'></script>
+		<script type='text/javascript' src='js/DepositWidget.js'></script>
+
+	</body>
+
+</html>

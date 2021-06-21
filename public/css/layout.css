@@ -1,0 +1,1056 @@
+/******************************************************************************
+ *
+ * MIT License
+ *
+ * Copyright (c) 2021 Benjamin Collins benjamin@collins.moe
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ *****************************************************************************/
+
+html {
+
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	font-family: 'Montserrat', sans-serif;
+
+}
+
+body {
+
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	background-color: #d2d2d2;
+
+}
+
+main {
+
+	width: 100%;
+	height: 100%;
+	position: fixed;
+
+	--header-height: 66px;
+	--border-size: 8px;
+	--history-width: 500px;
+	--nav-width: 420px;
+	--details-width: 1000px;
+	--profile-height: 140px;
+
+}
+
+div.mat-bg {
+
+	width: 100%;
+	background-color: #247b52;
+	height: 180px;
+	display: none;
+
+}
+
+main.raised {
+
+	z-index: 10;
+
+}
+
+header {
+
+	width: 100%;
+	height: calc(var(--header-height) - 6px);
+	margin-bottom: 6px;
+	color: #fff;
+	background-color: #247b52;
+
+}
+
+header table {
+
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+
+}
+
+header table td.img {
+	
+	text-align: center;
+	width: 50px;
+
+}
+
+header table img {
+
+	max-height: 32px;
+
+}
+
+header table h1 {
+
+	padding: 0;
+	margin: 0;
+	font-weight: 400;
+	font-size: 24px;
+
+}
+
+section {
+
+	width: 100%;
+	height: calc(100% - var(--header-height));
+	position: relative;
+
+}
+
+nav {
+
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	height: calc(100% - 15px);
+	width: calc(var(--nav-width) - 10px);
+	border-radius: 5px;
+	overflow: hidden;
+	background-color: #f2f2f2;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+}
+
+nav div.toolbar {
+
+	height: var(--header-height);
+	background-color: #009487;
+	
+}
+
+nav div.toolbar table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	color: #fff;
+
+}
+
+nav div.toolbar table h2 {
+
+	padding: 0;
+	margin: 0;
+	color: #fff;
+	font-weight: 400;
+	padding-left: 15px;
+
+}
+
+nav div.toolbar table td.btn {
+
+	width: 70px;
+
+}
+
+nav div.toolbar table td.btn div.add-btn {
+
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	display: block;
+	margin: auto;
+	position: relative;
+	background-image: url('../img/plus.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 90%;
+
+}
+
+nav div.toolbar table td.btn div.add-btn:hover {
+
+	cursor: pointer;
+
+}
+
+nav div.toolbar table td.btn div.add-btn:hover:before {
+
+	transform: scale(1, 1);
+
+}
+
+nav div.toolbar table td.btn div.add-btn:before {
+
+	content: "";
+	display: block;
+	margin: auto;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+	background-color: rgba(255, 255, 255, 0.2);
+	transition: transform 240ms;
+	transform: scale(0, 0);
+
+}
+
+nav div.content {
+
+	height: calc(100% - var(--header-height));
+	overflow-y: auto;
+
+}
+
+nav div.content li {
+
+	list-style: none;
+	width: 100%;
+	height: 80px;
+	position: relative;
+	border-bottom: 1px solid #e2e2e2;
+	overflow: hidden;
+
+}
+
+nav div.content li:hover {
+
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.15);
+
+}
+
+nav div.content li.active {
+
+	background-color: rgba(0,0,0,0.15);
+
+}
+
+nav div.content li div.circle {
+
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+
+	background-position: center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+
+}
+
+nav div.content li div.username {
+
+	width: calc(100% - 80px);
+	left: 80px;
+	top: 0;
+	height: 50px;
+	font-size: 24px;
+	color: #000;
+	position: absolute;
+	line-height: 50px;
+
+}
+
+nav div.content li div.balance {
+
+	width: calc(100% - 80px);
+	left: 84px;
+	bottom: 10px;
+	height: 30px;
+	font-size: 20px;
+	color: #5a5a5a;
+	position: absolute;
+	line-height: 30px;
+
+}
+
+article {
+
+	position: absolute;
+	left: var(--nav-width);
+	top : 0;
+	width: calc(100% - var(--nav-width));
+	height: 100%;
+
+}
+
+article div.transfers div.from {
+
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+}
+
+article div.transfers div.profile {
+
+	position: absolute;
+	width: var(--history-width);
+	top: 5px;
+	left: 10px;
+	height: calc(100% - 15px);
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	border-radius: 5px;
+	overflow: hidden;
+
+}
+
+article div.transfers div.profile.disabled {
+
+	pointer-events: none;
+	opacity: 0.9;
+	-webkit-filter: blur(2px);
+	-moz-filter: blur(2px);
+	-o-filter: blur(2px);
+	-ms-filter: blur(2px);
+	filter: blur(2px);
+
+}
+
+article div.transfers div.profile.disabled:before {
+
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 10;
+
+}
+
+
+article div.transfers div.profile div.header {
+
+	width: 100%;
+	height: var(--profile-height);
+	position: relative;
+	color: #fff;
+
+}
+
+article div.transfers div.profile div.content {
+
+	height: calc(100% - var(--profile-height));
+	overflow-y: auto;
+
+}
+
+article div.transfers div.profile div.content li {
+
+	list-style: none;
+	border-bottom: 1px solid #bababa;
+	height: 70px;
+
+}
+
+article div.transfers div.profile div.content li table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+article div.transfers div.profile div.content li table td.icon {
+
+	width: 70px;
+
+}
+
+article div.transfers div.profile div.content li table td.icon div.icon {
+
+	width: 50px;
+	height: 50px;
+	display: block;
+	margin: auto;
+	border-radius: 100%;
+	opacity: 0.5;
+
+	background-position: center;
+	background-size: 70%;
+	background-repeat: no-repeat;
+
+}
+
+article div.transfers div.profile div.content li table td.icon div.icon.send {
+
+	background-image: url('../img/send.png');
+
+}
+
+article div.transfers div.profile div.content li table td.icon div.icon.receive {
+
+	background-image: url('../img/inbox.png');
+
+}
+
+article div.transfers div.profile div.content li table td.icon div.icon.deposit {
+
+	background-image: url('../img/download.png');
+
+}
+
+article div.transfers div.profile div.content li table td.icon div.icon.withdraw {
+
+	background-image: url('../img/upload.png');
+
+}
+
+article div.transfers div.profile div.content li table td {
+
+	font-size: 15px;
+
+}
+
+article div.transfers div.from div.profile div.header {
+
+	background-color: #6200ee;
+
+}
+
+article div.transfers div.to div.profile div.header {
+
+	background-color: #6200ee;
+
+}
+
+article div.transfers div.profile div.header h3 {
+
+	padding: 15px;
+	margin: 0;
+	font-size: 24px;
+	font-weight: 400;
+	position: relative;
+
+}
+
+article div.transfers div.profile div.header h3 div.dots {
+
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    display: block;
+    margin: auto;
+    position: relative;
+    background-image: url('../img/dots-vertical.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 90%;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	display: none;
+
+}
+
+article div.transfers div.profile div.header h3 div.dots:before {
+
+	content: "";
+	display: block;
+	margin: auto;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+	background-color: rgba(255, 255, 255, 0.2);
+	transition: transform 240ms;
+	transform: scale(0, 0);
+
+}
+
+article div.transfers div.profile div.header h3 div.dots:hover {
+
+	cursor: pointer;
+
+}
+
+article div.transfers div.profile div.header h3 div.dots:hover:before {
+
+	transform: scale(1, 1);
+
+}
+
+article div.transfers div.profile div.header select {
+
+	position: absolute;
+	right: 15px;
+	top: 14px;
+	border: 1px solid #fff;
+	border-radius: 4px;
+	padding: 8px 0;
+	color: #fff;
+	width: 200px;
+	background-color: transparent;
+
+}
+
+article div.transfers div.profile div.header div.user {
+
+	height: 60px;
+	width: calc(100% - 30px);
+	display: block;
+	margin: auto;
+
+}
+
+article div.transfers div.profile div.header div.user table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 20px;
+
+}
+
+article div.transfers div.profile div.header div.user table td.a {
+
+	width: 60px;
+
+}
+
+article div.transfers div.profile div.header div.user table td.a div.circle {
+
+	width: 50px;
+	height: 50px;
+	background-color: pink;
+	display: block;
+	border-radius: 100%;
+
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+
+}
+
+article div.transfers div.profile div.header div.user table td.c {
+
+	width: 80px;
+	text-align: right;
+
+}
+
+article div.transfers div.profile div.header div.user table td.c img {
+	
+	margin-top: 10px;
+	width: 34px;
+	height: 34px;
+	border-radius: 8px;
+	padding: 4px;
+	opacity: 0.8;
+
+}
+
+article div.transfers div.profile div.header div.user table td.c img:hover {
+
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.2);
+
+}
+
+article div.transfers div.history {
+
+	position: absolute;
+	width: calc(100% - 15px);
+	top: calc(var(--profile-height) + 20px);
+	left: 10px;
+	height: calc(100% - var(--profile-height) - 30px);
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	border-radius: 4px;
+	overflow: hidden;
+
+}
+
+article div.transfers div.to {
+
+	position: absolute;
+	left: 50%;
+	height: 100%;
+	width: 50%;
+
+}
+
+article div.transfers {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: var(--history-width);
+	height: 100%;
+
+}
+
+article div.transfer-details {
+
+	position: absolute;
+	left: calc(var(--history-width) + 15px);
+	top: 0;
+	width: calc(100% - var(--history-width) - 15px);
+	height: 100%;
+
+}
+
+article div.transfer-details div.amount {
+
+	width: calc(100% - 10px);
+	height: calc(100% - 15px);
+	display: block;
+	margin: auto;
+	margin-top: 5px;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	overflow: hidden;
+
+}
+
+article div.transfer-details div.amount div.header {
+
+	height: 60px;
+	background-color: #0087af;
+	position: relative;
+	display: flex;
+	flex: 1 0 auto;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-content: stretch;
+
+}
+
+article div.transfer-details div.amount li {
+
+	list-style: none;
+	width: 100%;
+	height: 100%;
+	flex-grow: 1;
+	text-align: center;
+	color: #fff;
+	line-height: 60px;
+	font-size: 22px;
+	position: relative;
+
+}
+
+article div.transfer-details div.amount li:first-child:before {
+	
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background-color: #6200ee;
+	transition: 250ms transform cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+article div.transfer-details div.amount.send li:first-child:before {
+
+	transform: translateX(0);
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+}
+
+article div.transfer-details div.amount.deposit li:first-child:before {
+
+	transform: translateX(100%);
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+
+}
+
+article div.transfer-details div.amount div.withdraw li:first-child:before {
+
+	transform: translateX(200%);
+
+}
+
+article div.transfer-details div.amount li:hover {
+
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.2);
+
+}
+
+article div.transfer-details div.amount div.input {
+
+	padding: 15px;
+	height: 50px;
+
+}
+
+article div.transfer-details div.amount div.input h4 {
+
+	margin: 0;
+	padding: 10px 0;
+	font-size : 18px;
+
+}
+
+article div.transfer-details div.amount div.input div.qr_code {
+
+	width: 500px;
+	height: 500px;
+	margin: 10px auto;
+	display: block;
+	background-color: rgba(0,0,0,0.1);
+
+}
+
+article div.transfer-details div.amount div.input button.step {
+
+	width: 250px;
+	background-color: #0087af;
+	color: #fff;
+	text-align: center;
+	padding: 10px 0;
+	box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 1px 5px 0px rgba(0,0,0,.12);
+	border: none;
+	border-radius: 5px;
+	font-size: 17px;
+	margin-top: 10px;
+
+}
+
+article div.transfer-details div.amount div.input button.submit {
+
+	width: 500px;
+	background-color: #0087af;
+	color: #fff;
+	text-align: center;
+	padding: 15px 0;
+	display: block;
+	margin: auto;
+	box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 1px 5px 0px rgba(0,0,0,.12);
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+
+}
+
+article div.transfer-details div.amount div.input div.s,
+article div.transfer-details div.amount div.input div.d {
+
+	display: none;
+
+}
+
+article div.transfer-details div.amount.send div.input div.s {
+
+	display: block;
+
+}
+
+article div.transfer-details div.amount.deposit div.input div.d {
+
+	display: block;
+
+}
+
+article div.transfer-details div.amount div.input table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+article div.transfer-details div.amount div.input table input {
+
+	width: calc(100% - 20px);
+	padding: 8px 0;
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+	text-indent: 8px;
+	font-size: 17px;
+
+}
+
+article div.transfer-details div.amount div.input table input.amt {
+
+	width: calc(100% - 80px);
+	text-align: right;
+	padding-right: 10px;
+
+}
+
+article div.transfer-details div.amount div.input table select {
+
+	width: calc(100% - 20px);
+	padding: 8px 0;
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+	text-indent: 2px;
+	font-size: 17px;
+
+}
+
+article div.transfer-details div.amount div.input div.tbl {
+
+
+}
+
+article div.transfer-details div.amount div.input div.tbl td {
+
+	padding-top: 8px;
+	padding-bottom: 8px;
+
+}
+
+article div.transfer-details div.amount div.input div.tbl td:first-child {
+
+	width: 170px;
+	font-size: 18px;
+	color: #333;
+	text-indent: 4px;
+
+}
+
+article div.transfer-details div.amount div.input table td.label {
+
+	width: 130px;
+	font-size: 18px;
+
+}
+
+article div.transfer-details div.amount div.input table div.rel {
+
+	width: calc(100% - 12px);
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+	position: relative;
+	background-color: #fff;
+	cursor: text;
+
+}
+
+article div.transfer-details div.amount div.input table div.rel:after {
+
+	content: "TRTL";
+	font-size: 20px;
+	color: #6b6b5c;
+	padding-left: 20px;
+
+}
+
+article div.transfer-details div.amount div.input table div.rel input {
+
+	border: none;
+	background-color: transparent;
+	outline: none;
+	width: calc(100% - 90px);
+	padding: 8px 0;
+	text-align: right;
+	font-size: 20px;
+
+}
+
+article div.transfer-details div.amount div.input table td.poll {
+
+	width: 110px;
+	text-align: right;
+
+}
+
+article div.transfer-details div.amount div.input table td.btn {
+
+	width: 25%;
+
+}
+
+article div.transfer-details div.amount div.input table td.btn button {
+
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+	border: none;
+	padding: 10px 0;
+	box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 1px 5px 0px rgba(0,0,0,.12);
+	transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+	color: #fff;
+	background-color: #0087af;
+	font-size: 18px;
+
+}
+
+article div.transfer-details div.amount div.input table td.btn button:hover {
+	
+	cursor: pointer;
+	box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),0px 4px 5px 0px rgba(0, 0, 0, 0.14),0px 1px 10px 0px rgba(0,0,0,.12);
+
+}
+
+
+article div.transfer-details div.fees {
+
+	width: calc(100% - 10px);
+	height: 500px;
+	display: block;
+	margin: 15px auto;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	overflow: hidden;
+
+}
+
+article div.transfer-details div.fees div.addr {
+
+	width: 98%;
+	height: 34px;
+	display: block;
+	margin: auto;
+	text-align: center;
+	font-size: 13px;
+	overflow-wrap: anywhere;
+
+}
+
+article div.transfer-details div.fees div.qr_code {
+
+	display: block;
+	margin: 10px auto;
+
+}
+
+article div.transfer-details div.fees div.qr_code img,
+article div.transfer-details div.fees div.qr_code canvas {
+
+	display: block;
+	margin: auto;
+
+}
+
+article div.transfer-details div.fees div.block {
+
+	display: none;
+
+}
+
+article div.transfer-details div.fees.sendx div.block.a {
+
+	display: block;
+
+}
+
+article div.transfer-details div.fees.deposit div.block.b {
+
+	display: block;
+
+}
+
+article div.transfer-details div.fees.withdraw div.block.c {
+
+	display: block;
+
+}
+
+article div.transfer-details div.fees div.header {
+
+	height: 50px;
+	background-color: #0087af;
+
+}
+
+article div.transfer-details div.fees div.header h4 {
+
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	font-weight: 400;
+	color: #fff;
+	line-height: 50px;
+	font-size: 20px;
+
+}
+
+/*
+article div.transfer-details div.send {
+
+	width: calc(100% - 10px);
+	height: 80px;
+	display: block;
+	margin: auto;
+	background-color: #0087af;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	text-align: center;
+	font-size: 26px;
+	line-height: 80px;
+	color: #fff;
+
+}
+*/
+
+article div.transfer-details div.console {
+
+	width: calc(100% - 10px);
+	height: calc(100% - 585px);
+	display: block;
+	margin: auto;
+	margin-top: 20px;
+	background-color: #f2f2f2;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	position: relative;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	overflow: hidden;
+	display: none;
+
+}
+
+article div.transfer-details div.console div.header {
+
+	height: 50px;
+	background-color: #0087af;
+
+}
+
+article div.transfer-details div.console div.header h4 {
+
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	font-weight: 400;
+	color: #fff;
+	line-height: 50px;
+	font-size: 20px;
+
+}
